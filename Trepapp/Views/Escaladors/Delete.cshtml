@@ -1,0 +1,56 @@
+﻿@model Trepapp.Models.Escalador
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Escalador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Llinatge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Llinatge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorreuElectronic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorreuElectronic)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

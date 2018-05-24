@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Trepapp.Models.Escalador>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreApellido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nick)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataNeixament)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Federat)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreApellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nick)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNeixament)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Federat)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EscaladorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EscaladorId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EscaladorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

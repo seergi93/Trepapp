@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,130 +23,53 @@ namespace Trepapp.Controllers
         {
             return View(await _context.User.ToListAsync());
         }
-
-        // GET: Users/Details/5
-        public async Task<IActionResult> Details(string id)
+        //Obtener usuarios por ID
+        public async Task<List<User>> GetUser(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var user = await _context.User
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return View(user);
+            List<User> users = new List<User>();
+            var appUsuario = await _context.User.SingleOrDefaultAsync(m => m.Id == id);
+            users.Add(appUsuario);
+            return users;
         }
 
-        // GET: Users/Create
-        public IActionResult Create()
+        public async Task<string> EditUser(string id, string userName, string email,
+            string phoneNumber, int accessFailedCount, string concurrencyStamp,
+          bool emailConfirmed, bool lockoutEnabled, DateTimeOffset lockoutEnd, string normalizedEmail,
+          string normalizedUserName, string passwordHash, bool phoneNumberConfirmed, string securityStamp,
+          bool twoFactorEnabled, User user)
         {
-            return View();
-        }
-
-        // POST: Users/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LockoutEnd,TwoFactorEnabled,PhoneNumberConfirmed,PhoneNumber,ConcurrencyStamp,SecurityStamp,PasswordHash,EmailConfirmed,NormalizedEmail,Email,NormalizedUserName,UserName,Id,LockoutEnabled,AccessFailedCount,Role,RoleId")] User user)
-        {
-            if (ModelState.IsValid)
+            var resp = "";
+            try
             {
-                _context.Add(user);
+                user = new User
+                {
+                    Id = id,
+                    UserName = userName,
+                    Email = email,
+                    PhoneNumber = phoneNumber,
+                    EmailConfirmed = emailConfirmed,
+                    LockoutEnabled = lockoutEnabled,
+                    LockoutEnd = lockoutEnd,
+                    NormalizedEmail = normalizedEmail,
+                    NormalizedUserName = normalizedUserName,
+                    PasswordHash = passwordHash,
+                    PhoneNumberConfirmed = phoneNumberConfirmed,
+                    SecurityStamp = securityStamp,
+                    TwoFactorEnabled = twoFactorEnabled,
+                    AccessFailedCount = accessFailedCount,
+                    ConcurrencyStamp = concurrencyStamp
+                };
+                //Actualizar datos
+                _context.Update(user);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                resp = "Save";
             }
-            return View(user);
-        }
-
-        // GET: Users/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null)
+            catch (System.Exception)
             {
-                return NotFound();
+                resp = "Not Save";
+                throw;
             }
-
-            var user = await _context.User.SingleOrDefaultAsync(m => m.Id == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return View(user);
-        }
-
-        // POST: Users/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("LockoutEnd,TwoFactorEnabled,PhoneNumberConfirmed,PhoneNumber,ConcurrencyStamp,SecurityStamp,PasswordHash,EmailConfirmed,NormalizedEmail,Email,NormalizedUserName,UserName,Id,LockoutEnabled,AccessFailedCount,Role,RoleId")] User user)
-        {
-            if (id != user.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(user);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UserExists(user.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(user);
-        }
-
-        // GET: Users/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var user = await _context.User
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return View(user);
-        }
-
-        // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var user = await _context.User.SingleOrDefaultAsync(m => m.Id == id);
-            _context.User.Remove(user);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool UserExists(string id)
-        {
-            return _context.User.Any(e => e.Id == id);
+            return resp;
         }
     }
 }

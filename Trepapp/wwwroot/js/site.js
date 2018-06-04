@@ -55,7 +55,19 @@ function mostrarUser(response) {
         $('input[name=Email]').val(val.email);
         $('input[name=PhoneNumber]').val(val.phoneNumber);
         document.getElementById('Select').options[0] = new Option(val.role, val.roleId);
+        //Mostrar detalles
+        $("#dEmail").text(val.email);
+        $("#dUserName").text(val.userName);
+        $("#dPhoneNumber").text(val.phoneNumber);
+        $("#dRol").text(val.role);
+        //Mostrar los datos del usuario que deseo eliminar
+        $("#eUsuario").text(val.email);
+        $('input[name=EIdUsuario]').val(val.id);
+
+
     });
+
+
 
 
 }
@@ -67,7 +79,7 @@ function getRoles(action) {
         url: action,
         data: {},
         success: function (response) {
-            if (j == 0) {
+            if (j === 0) {
                 for (var i = 0; i < response.length; i++) {
                     document.getElementById('Select').options[i] = new Option(response[i].text, response[i].value);
                 }
@@ -108,15 +120,32 @@ function editarUser(action) {
         url: action,
         data: { id, userName, email, phoneNumber, accessFailedCount, concurrencyStamp, emailConfirmed, lockoutEnabled, lockoutEnd, normalizedEmail, normalizedUserName, passwordHash, phoneNumberConfirmed, securityStamp, twoFactorEnabled, selectRole },
         success: function (response) {
-            if (response == "Save") {
+            if (response === "Save") {
                 window.location.href = "Users";
             } else {
                 alert("No se puede editar");
             }
 
         }
-    })
+    });
+}
+function ocultarDetalleUsuario() {
+    $("#modalDetalle").modal("hide");
+}
 
-
-
+function eliminarUsuario(action) {
+    var id = $('input[name=EIdUsuario]')[0].value;
+    $.ajax({
+        type: "POST",
+        url: action,
+        data: { id },
+        success: function (response) {
+            if (response === "Delete") {
+                window.location.href = "Users";
+            }
+            else {
+                alert("No se puede eliminar el registro");
+            }
+        }
+    });
 }

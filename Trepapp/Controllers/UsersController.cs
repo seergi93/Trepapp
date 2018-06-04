@@ -146,5 +146,27 @@ namespace Trepapp.Controllers
             }
             return resp;
         }
+
+        public async Task<String> DeleteUser(string id)
+        {
+            var response = "";
+
+            try
+            {
+                var applicationUser = await _context.User.SingleOrDefaultAsync(m => m.Id == id);
+                _context.User.Remove(applicationUser);
+                await _context.SaveChangesAsync();
+                response = "Delete";
+            }
+            catch
+            {
+                response = "NoDelete";
+            }
+            return response;
+        }
+
+
     }
+
+
 }

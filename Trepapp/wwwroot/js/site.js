@@ -149,3 +149,30 @@ function eliminarUsuario(action) {
         }
     });
 }
+
+function crearUser(action) {
+    //Obtener datos del usuario
+    userName = $('input[name=UserNameNuevo]')[0].value;
+    email = $('input[name=EmailNuevo]')[0].value;
+    phoneNumber = $('input[name=PhoneNumberNuevo]')[0].value;
+    passwordHash = $('input[name=PasswordHashNuevo]')[0].value;
+    //Siempre entra como user
+    selectRole = "User";
+
+    //Validación
+
+    //Enviar ajax
+    $.ajax({
+        type: "POST",
+        url: action,
+        data: { userName, email, phoneNumber, passwordHash, selectRole },
+        success: function (response) {
+            if (response === "Save") {
+                $('#mensajeNuevo').html('<div class="alert alert-success" role="alert">El usuario se ha creado correctamente</div >');
+            }
+            else {
+                $('#mensajeNuevo').html('<div class="alert alert-danger" role="alert"> No se puede guardar el usuario. <br/> · Ingrese un email correcto. <br/> · El password debe tener de 6-100 caracteres, al menos un caracter especial, una letra mayúscula y un número<div>');
+            }
+        }
+    });
+}

@@ -164,7 +164,29 @@ namespace Trepapp.Controllers
             }
             return response;
         }
+        public async Task<String> CrearUser(string userName, string email, string phoneNumber, string passwordHash, string selectRole, User user)
+        {
+            var response = "";
+            user = new User
+            {
+                UserName = userName,
+                Email = email,
+                PhoneNumber = phoneNumber,
+                PasswordHash = passwordHash
+            };
 
+            var result = await _userManager.CreateAsync(user, passwordHash);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, selectRole);
+                response = "Save";
+            }
+            else
+            {
+                response = "NoSave";
+            }
+            return response;
+        }
 
     }
 

@@ -47,5 +47,20 @@ namespace Trepapp.Models
             }
             return userRoles;
         }
+
+        public List<SelectListItem> Roles(RoleManager<IdentityRole> roleManager)
+        {
+
+            var roles = roleManager.Roles.ToList();
+            foreach (var data in roles)
+            {
+                userRoles.Add(new SelectListItem()
+                {
+                    Value = data.Id,
+                    Text = data.Name
+                });
+            }
+            return userRoles;
+        }
     }
 }

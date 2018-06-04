@@ -56,15 +56,45 @@ namespace Trepapp.Controllers
         {
             List<User> users = new List<User>();
             var appUsuario = await _context.User.SingleOrDefaultAsync(m => m.Id == id);
-            users.Add(appUsuario);
+            userRole = await _userRole.GetRole(_userManager, _roleManager, id);
+            users.Add(new User()
+            {
+                Id = appUsuario.Id,
+                UserName = appUsuario.UserName,
+                PhoneNumber = appUsuario.PhoneNumber,
+                Email = appUsuario.Email,
+                Role = userRole[0].Text,
+                RoleId = userRole[0].Value,
+                AccessFailedCount = appUsuario.AccessFailedCount,
+                ConcurrencyStamp = appUsuario.ConcurrencyStamp,
+                EmailConfirmed = appUsuario.EmailConfirmed,
+                LockoutEnabled = appUsuario.LockoutEnabled,
+                LockoutEnd = appUsuario.LockoutEnd,
+                NormalizedEmail = appUsuario.NormalizedEmail,
+                NormalizedUserName = appUsuario.NormalizedUserName,
+                PasswordHash = appUsuario.PasswordHash,
+                PhoneNumberConfirmed = appUsuario.PhoneNumberConfirmed,
+                SecurityStamp = appUsuario.SecurityStamp,
+                TwoFactorEnabled = appUsuario.TwoFactorEnabled
+            });
+
             return users;
+        }
+
+        public async Task<List<SelectListItem>> GetRoles()
+        {
+            List<SelectListItem> rolesList = new List<SelectListItem>();
+            rolesList = _userRole.Roles(_roleManager);
+
+            return rolesList;
+
         }
 
         public async Task<string> EditUser(string id, string userName, string email,
             string phoneNumber, int accessFailedCount, string concurrencyStamp,
           bool emailConfirmed, bool lockoutEnabled, DateTimeOffset lockoutEnd, string normalizedEmail,
           string normalizedUserName, string passwordHash, bool phoneNumberConfirmed, string securityStamp,
-          bool twoFactorEnabled, User user)
+          bool twoFactorEnabled, string selectRole, User user)
         {
             var resp = "";
             try
@@ -90,9 +120,26 @@ namespace Trepapp.Controllers
                 //Actualizar datos
                 _context.Update(user);
                 await _context.SaveChangesAsync();
+
+                //Obtenemos usuario
+                var usuario = await _userManager.FindByIdAsync(id);
+                userRole = await _userRole.GetRole(_userManager, _roleManager, id);
+
+                if (userRole[0].Text != "No Role")
+                {
+                    await _userManager.RemoveFromRoleAsync(usuario, userRole[0].Text);
+                }
+                if (userRole[0].Text == "No Role")
+                {
+                    selectRole = "User";
+                }
+                var result = await _userManager.AddToRoleAsync(usuario, selectRole);
+
+
+
                 resp = "Save";
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 resp = "Not Save";
                 throw;

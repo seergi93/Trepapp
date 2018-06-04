@@ -1,11 +1,4 @@
-﻿@using System.Collections.Generic
-@using System.Linq
-@using Microsoft.AspNetCore.Http
-@using Microsoft.AspNetCore.Http.Authentication
-@model LoginViewModel
-@inject SignInManager<User> SignInManager
-
-@{
+﻿@{
     ViewData["Title"] = "Home";
 }
 <style>
@@ -59,82 +52,52 @@
 <div class="container">
     <div class="form-signin">
         <div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Loggear-me</button>
+            <a class="btn btn-lg btn-primary btn-block" href="/Account/Login">Loggear-me</a>
             <a class="btn btn-lg btn-success btn-block" data-toggle="modal" data-target="#modalAgregar"> Registrar-me</a>
             <button class="btn btn-lg btn-info btn-block" type="submit">Entrar sin usuario</button>
-
         </div>
 
     </div>
+</div>
 
-    <div class="modal fade" id="modalAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <input type="hidden" name="Id" id="Id" />
-                        <div class="form-group">
-                            <label for="UserNameNuevo" class="control-label">Usuario</label>
-                            <input name="UserNameNuevo" id="UserNameNuevo" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="EmailNuevo" class="control-label">Email</label>
-                            <input type="email" name="EmailNuevo" id="EmailNuevo" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="PhoneNumberNuevo" class="control-label">Teléfono</label>
-                            <input type="number" name="PhoneNumberNuevo" id="PhoneNumberNuevo" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="PasswordHashNuevo" class="control-label">Password</label>
-                            <input type="password" name="PasswordHashNuevo" id="PasswordHashNuevo" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <p id="mensajeNuevo"></p>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="crearUser('Users/CrearUser')">CrearUsuario</button>
-                </div>
+<!--************** MODAL_AGREGAR****************-->
+<div class="modal fade" id="modalAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" name="Id" id="Id" />
+                    <div class="form-group">
+                        <label for="UserNameNuevo" class="control-label">Usuario</label>
+                        <input name="UserNameNuevo" id="UserNameNuevo" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="EmailNuevo" class="control-label">Email</label>
+                        <input type="email" name="EmailNuevo" id="EmailNuevo" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="PhoneNumberNuevo" class="control-label">Teléfono</label>
+                        <input type="number" name="PhoneNumberNuevo" id="PhoneNumberNuevo" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="PasswordHashNuevo" class="control-label">Password</label>
+                        <input type="password" name="PasswordHashNuevo" id="PasswordHashNuevo" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <p id="mensajeNuevo"></p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="crearUser('Users/CrearUser')">CrearUsuario</button>
             </div>
         </div>
     </div>
-
-
-    @*<div class="form-signin">
-            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                <h2 class="form-signin-heading">Iniciar sesión</h2>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password"></label>
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="RememberMe">
-                            <input asp-for="RememberMe" />
-                            @Html.DisplayNameFor(m => m.RememberMe)
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-
-                </div>
-            </form>
-        </div>*@
+</div>

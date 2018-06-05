@@ -11,26 +11,28 @@
     <a class="btn btn-info" asp-action="Create">Crear un nuevo sector</a>
 </p>
 
-<tbody>
-    @foreach (var item in Model)
-    {
-        <!-- Sector -->
-        <div class="row">
-            <h2> @Html.DisplayFor(modelItem => item.Nombre)</h2>
-            <div class="col-md-7">
+@foreach (var item in Model)
+{
+    <!-- Sector -->
+    <div class="container">
+        <h2> @Html.DisplayFor(modelItem => item.Nombre)</h2>
+        <div class="col-md-8">
 
-                <img class="img-fluid rounded mb-3 mb-md-0" src=" @Html.DisplayFor(modelItem => item.UrlImagen)" alt="Sa comuna de caimari">
+            <img class="img-fluid rounded mb-3 mb-md-0" src=" @Html.DisplayFor(modelItem => item.UrlImagen)" alt="Sa comuna de caimari">
 
-            </div>
-            <div class="col-md-5">
-                <h3> @Html.DisplayFor(modelItem => item.Lugar)</h3>
-                <p>@Html.DisplayFor(modelItem => item.Descripcion)</p>
-                <a class="btn btn-primary" href="@Html.DisplayFor(modelItem => item.UrlLocalizacion)">Ver ubicación</a>
-            </div>
-            <br />
-            <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.SectorId">Editar</a>
-            <a class="btn btn-info" asp-action="Details" asp-route-id="@item.SectorId">Detalles</a>
-            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.SectorId">Eliminar</a>
         </div>
-    }
-</tbody>
+        <div class="col-md-8">
+            <h3> @Html.DisplayFor(modelItem => item.Lugar)</h3>
+            <p>@Html.DisplayFor(modelItem => item.Descripcion)</p>
+            <a class="btn btn-primary" href="@Html.DisplayFor(modelItem => item.UrlLocalizacion)">Ver ubicación</a>
+        </div>
+        <br />
+
+    </div>
+    <br />
+    <div class="container">
+        <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.SectorId">Editar</a>
+        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.SectorId">Detalles</a>
+        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.SectorId">Eliminar</a>
+    </div>
+}

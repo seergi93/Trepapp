@@ -10,8 +10,7 @@ namespace Trepapp.Models
         public int ViaId { get; set; }
         public string Nombre { get; set; }
         public string Grado { get; set; }
-        public Sector sector { get; set; }
-        public int SectorÏd { get; set; }
+        public Sector Sector { get; set; }
+        public int SectorId { get; set; }
     }
-
 }

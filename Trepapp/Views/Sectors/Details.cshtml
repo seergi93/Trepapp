@@ -1,0 +1,48 @@
+﻿@model Trepapp.Models.Sector
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sector</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lugar)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lugar)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlImagen)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UrlImagen)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlLocalizacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UrlLocalizacion)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SectorId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

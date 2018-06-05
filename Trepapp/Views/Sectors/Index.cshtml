@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Trepapp.Models.Sector>
+@{
+    ViewData["Title"] = "Index";
+}
+<!-- Page Heading -->
+<h1 class="my-4">
+    Sectores de escalada
+</h1>
+
+<p>
+    <a class="btn btn-info" asp-action="Create">Crear un nuevo sector</a>
+</p>
+
+<tbody>
+    @foreach (var item in Model)
+    {
+        <!-- Sector -->
+        <div class="row">
+            <h2> @Html.DisplayFor(modelItem => item.Nombre)</h2>
+            <div class="col-md-7">
+
+                <img class="img-fluid rounded mb-3 mb-md-0" src=" @Html.DisplayFor(modelItem => item.UrlImagen)" alt="Sa comuna de caimari">
+
+            </div>
+            <div class="col-md-5">
+                <h3> @Html.DisplayFor(modelItem => item.Lugar)</h3>
+                <p>@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                <a class="btn btn-primary" href="@Html.DisplayFor(modelItem => item.UrlLocalizacion)">Ver ubicación</a>
+            </div>
+            <br />
+            <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.SectorId">Editar</a>
+            <a class="btn btn-info" asp-action="Details" asp-route-id="@item.SectorId">Detalles</a>
+            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.SectorId">Eliminar</a>
+        </div>
+    }
+</tbody>

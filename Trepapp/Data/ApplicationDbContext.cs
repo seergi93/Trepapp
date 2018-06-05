@@ -24,5 +24,7 @@ namespace Trepapp.Data
         }
 
         public DbSet<Trepapp.Models.User> User { get; set; }
+
+        public DbSet<Trepapp.Models.Sector> Sector { get; set; }
     }
 }

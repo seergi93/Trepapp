@@ -9,6 +9,7 @@ namespace Trepapp.Models
     {
         public int SectorId { get; set; }
         public string Nombre { get; set; }
+        public string Descripcion { get; set; }
         public string Lugar { get; set; }
         public string UrlImagen { get; set; }
         public string UrlLocalizacion { get; set; }

@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Trepapp.Models.Sector>
+<<<<<<< HEAD
 @{
     ViewData["Title"] = "Index";
 }
@@ -36,3 +37,57 @@
         <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.SectorId">Eliminar</a>
     </div>
 }
+=======
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Lugar)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UrlImagen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UrlLocalizacion)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lugar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrlImagen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrlLocalizacion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SectorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SectorId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SectorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+>>>>>>> e93f61c89dc91c64b34677d76ae0e96d0196b43c

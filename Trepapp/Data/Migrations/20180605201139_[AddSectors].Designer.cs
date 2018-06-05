@@ -11,9 +11,10 @@ using Trepapp.Data;
 namespace Trepapp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180605201139_[AddSectors]")]
+    partial class AddSectors
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,11 +134,6 @@ namespace Trepapp.Data.Migrations
                     b.Property<int>("SectorId")
                         .ValueGeneratedOnAdd();
 
-<<<<<<< HEAD
-                    b.Property<string>("Descripcion");
-
-=======
->>>>>>> e93f61c89dc91c64b34677d76ae0e96d0196b43c
                     b.Property<string>("Lugar");
 
                     b.Property<string>("Nombre");
@@ -211,22 +207,11 @@ namespace Trepapp.Data.Migrations
                     b.Property<int>("ViaId")
                         .ValueGeneratedOnAdd();
 
-<<<<<<< HEAD
-                    b.Property<string>("Descripcion");
-
-=======
->>>>>>> e93f61c89dc91c64b34677d76ae0e96d0196b43c
                     b.Property<string>("Grado");
 
                     b.Property<string>("Nombre");
 
-<<<<<<< HEAD
-                    b.Property<int?>("SectorId");
-
-                    b.Property<int>("SectorÏd");
-=======
                     b.Property<int>("SectorId");
->>>>>>> e93f61c89dc91c64b34677d76ae0e96d0196b43c
 
                     b.HasKey("ViaId");
 
@@ -284,12 +269,8 @@ namespace Trepapp.Data.Migrations
                 {
                     b.HasOne("Trepapp.Models.Sector", "Sector")
                         .WithMany("Vias")
-<<<<<<< HEAD
-                        .HasForeignKey("SectorId");
-=======
                         .HasForeignKey("SectorId")
                         .OnDelete(DeleteBehavior.Cascade);
->>>>>>> e93f61c89dc91c64b34677d76ae0e96d0196b43c
                 });
 #pragma warning restore 612, 618
         }

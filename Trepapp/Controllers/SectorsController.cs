@@ -54,7 +54,11 @@ namespace Trepapp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public async Task<IActionResult> Create([Bind("SectorId,Nombre,Descripcion,Lugar,UrlImagen,UrlLocalizacion")] Sector sector)
+=======
+        public async Task<IActionResult> Create([Bind("SectorId,Nombre,Lugar,UrlImagen,UrlLocalizacion")] Sector sector)
+>>>>>>> e93f61c89dc91c64b34677d76ae0e96d0196b43c
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +90,11 @@ namespace Trepapp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public async Task<IActionResult> Edit(int id, [Bind("SectorId,Nombre,Descripcion,Lugar,UrlImagen,UrlLocalizacion")] Sector sector)
+=======
+        public async Task<IActionResult> Edit(int id, [Bind("SectorId,Nombre,Lugar,UrlImagen,UrlLocalizacion")] Sector sector)
+>>>>>>> e93f61c89dc91c64b34677d76ae0e96d0196b43c
         {
             if (id != sector.SectorId)
             {

@@ -1,7 +1,7 @@
 ﻿// Write your JavaScript code.
 $('#modalEditar').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
-})
+});
 
 //Variables globales donde se almacenan datos de registro, aunque estos datos nunca los modificaremos
 var accessFailedCount;
@@ -197,5 +197,15 @@ var getSectores = () => {
     var action = 'Vias/getSectores';
     var vias = new Vias("", "", "", "", action);
     vias.getSectores();
+}
+var agregarVia = () => {
+    var action = 'Vias/agregarVia';
+    var nombre = document.getElementById("Nombre").value;
+    var descripcion = document.getElementById("Descripcion").value;
+    var grado = document.getElementById("Grado").value;
+    var sectores = document.getElementById("SectorVias");
+    var sector = sectores.options[sectores.selectedIndex].value;
+    var vias = new Vias(nombre, descripcion, grado, sector, action);
+    vias.agregarVia("", "");
 }
 

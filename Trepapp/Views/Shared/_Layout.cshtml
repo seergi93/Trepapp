@@ -7,7 +7,8 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/site.css" />  
+        <link rel="stylesheet" href="~/css/vias.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -30,11 +31,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @*<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-        <li><a asp-area="" asp-controller="Home" asp-action="Users">Users</a></li>*@
+                    <li><a asp-area="" asp-controller="Users" asp-action="Index">Usuarios</a></li>kd
+                    <li><a asp-area="" asp-controller="Sectors" asp-action="Index">Sectores</a></li>
+                    <li><a asp-area="" asp-controller="Vias" asp-action="Index">Vias</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="Sectors" asp-action="Index">Sectors</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -52,6 +53,7 @@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/cursos.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"

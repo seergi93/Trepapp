@@ -177,11 +177,25 @@ function crearUser(action) {
     });
 }
 
-$().ready(() => {
-    document.getElementById("filtrar").focus();
-    filtrarDatos(1, "nombre");
-});
+
+//Vias
+
+
 
 $('#modalCS').on('shown.bs.modal', () => {
     $('#Nombre').focus();
 });
+
+
+$().ready(() => {
+    document.getElementById("filtrar").focus();
+    //filtrarDatos(1, "nombre");
+    getSectores();
+});
+
+var getSectores = () => {
+    var action = 'Vias/getSectores';
+    var vias = new Vias("", "", "", "", action);
+    vias.getSectores();
+}
+

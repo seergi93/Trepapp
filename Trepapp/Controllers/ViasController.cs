@@ -13,10 +13,12 @@ namespace Trepapp.Controllers
     public class ViasController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private ViaModels viaModels;
 
         public ViasController(ApplicationDbContext context)
         {
             _context = context;
+            viaModels = new ViaModels(context);
         }
 
         // GET: Vias
@@ -24,6 +26,16 @@ namespace Trepapp.Controllers
         {
             return View(await _context.Via.ToListAsync());
         }
+        //public List<object[]> filtrarVia(int numPagina, string valor, string order)
+        //{
+        //    return viaModels.filtrarVia(numPagina, valor, order);
+        //}
+
+        public List<Sector> getSectores()
+        {
+            return viaModels.getSectores();
+        }
+
 
         // GET: Vias/Details/5
         public async Task<IActionResult> Details(int? id)

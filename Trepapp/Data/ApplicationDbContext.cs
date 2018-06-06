@@ -23,10 +23,10 @@ namespace Trepapp.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<Trepapp.Models.User> User { get; set; }
+        public DbSet<User> User { get; set; }
 
-        public DbSet<Trepapp.Models.Sector> Sector { get; set; }
+        public DbSet<Sector> Sector { get; set; }
 
-        public DbSet<Trepapp.Models.Via> Via { get; set; }
+        public DbSet<Via> Via { get; set; }
     }
 }

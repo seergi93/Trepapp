@@ -5,12 +5,12 @@
 <h2>Vías</h2>
 
 <p>
-    <a data-toggle='modal' onclick="restablecer();" data-target='#modalCS' class='btn btn-info'>Añadir vía</a>
+    <a data-toggle='modal' data-target='#modalCS' class='btn btn-info'>Añadir vía</a>
 </p>
 
 <div class="form-group">
     <div class="col-md-6">
-        <input id="filtrar" name="filtrar" placeholder="Buscar" onKeyUp="filtrarVia(1,'nombre');" class="form-control" />
+        <input id="filtrar" name="filtrar" placeholder="Buscar" onKeyUp="" class="form-control" />
     </div>
 </div>
 
@@ -89,7 +89,7 @@
                         <div class="form-group">
                             <label for="Sector" class="col-md-2 control-label">Sector</label>
                             <div class="col-md-10">
-                                <select id='SectorVia' class="form-control">
+                                <select id='SectorVias' class="form-control">
                                     <option value="0">Seleccionar sector</option>
                                 </select>
                             </div>
@@ -102,60 +102,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 <button type="button" onclick="agregarVia()" class="btn btn-primary">Guardar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="ModalEstadoVia" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Actualizar estado</h4>
-            </div>
-            <div class="modal-body">
-                <h3 id="titleCurso" class="modal-title"></h3>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" onclick="editarEstadoCurso1()" class="btn btn-primary">Aceptar</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>
-                            Curso:
-                        </td>
-                        <td>
-                            <h5 id="cursoTitle"></h5>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Docente:
-                        </td>
-                        <td>
-                            <select id='instructorsCursos' class="form-control"></select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Fecha:
-                        </td>
-                        <td>
-                            <input type="datetime-local" for="Fecha" id="Fecha" placeholder="Fecha" style="width:210px" name="Fecha" class="form-control" />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" onclick="instructorCurso()" class="btn btn-primary">Aceptar</button>
             </div>
         </div>
     </div>

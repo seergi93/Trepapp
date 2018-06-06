@@ -1,53 +1,162 @@
 ﻿@model IEnumerable<Trepapp.Models.Via>
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Vías";
 }
-
-<h2>Index</h2>
+<h2>Vías</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a data-toggle='modal' onclick="restablecer();" data-target='#modalCS' class='btn btn-info'>Añadir vía</a>
 </p>
+
+<div class="form-group">
+    <div class="col-md-6">
+        <input id="filtrar" name="filtrar" placeholder="Buscar" onKeyUp="filtrarVia(1,'nombre');" class="form-control" />
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nombre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Descripcion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Grado)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SectorId)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SectorId)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Grado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SectorId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ViaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ViaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ViaId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SectorId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ViaId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ViaId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ViaId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<div class="modal fade" id="modalCS" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Añadir vía</h4>
+            </div>
+            <div class="modal-body">
+                <form asp-action="">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="Nombre" class="col-md-2 control-label">Nombre</label>
+                            <div class="col-md-10">
+                                <input for="Nombre" id="Nombre" placeholder="Nombre" name="Nombre" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Descripcion" class="col-md-2 control-label">Descripcion</label>
+                            <div class="col-md-10">
+                                <input for="Descripcion" id="Descripcion" placeholder="Descripcion" name="Descripcion" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Grado" class="col-md-2 control-label">Grado</label>
+                            <div class="col-md-10">
+                                <input for="Grado" id="Grado" placeholder="Grado" name="Grado" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Sector" class="col-md-2 control-label">Sector</label>
+                            <div class="col-md-10">
+                                <select id='SectorVia' class="form-control">
+                                    <option value="0">Seleccionar sector</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <label id="mensaje" class="col-md-2 control-label"></label>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="agregarVia()" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ModalEstadoVia" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Actualizar estado</h4>
+            </div>
+            <div class="modal-body">
+                <h3 id="titleCurso" class="modal-title"></h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" onclick="editarEstadoCurso1()" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            Curso:
+                        </td>
+                        <td>
+                            <h5 id="cursoTitle"></h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Docente:
+                        </td>
+                        <td>
+                            <select id='instructorsCursos' class="form-control"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Fecha:
+                        </td>
+                        <td>
+                            <input type="datetime-local" for="Fecha" id="Fecha" placeholder="Fecha" style="width:210px" name="Fecha" class="form-control" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" onclick="instructorCurso()" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

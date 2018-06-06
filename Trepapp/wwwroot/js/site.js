@@ -176,3 +176,12 @@ function crearUser(action) {
         }
     });
 }
+
+$().ready(() => {
+    document.getElementById("filtrar").focus();
+    filtrarDatos(1, "nombre");
+});
+
+$('#modalCS').on('shown.bs.modal', () => {
+    $('#Nombre').focus();
+});

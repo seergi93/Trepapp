@@ -214,9 +214,7 @@ namespace Trepapp.Data.Migrations
 
                     b.Property<string>("Nombre");
 
-                    b.Property<int?>("SectorId");
-
-                    b.Property<int>("SectorÏd");
+                    b.Property<int>("SectorId");
 
                     b.HasKey("ViaId");
 
@@ -274,7 +272,8 @@ namespace Trepapp.Data.Migrations
                 {
                     b.HasOne("Trepapp.Models.Sector", "Sector")
                         .WithMany("Vias")
-                        .HasForeignKey("SectorId");
+                        .HasForeignKey("SectorId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -35,8 +35,7 @@ namespace Trepapp.Data.Migrations
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Grado = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SectorId = table.Column<int>(type: "int", nullable: true),
-                    SectorÏd = table.Column<int>(type: "int", nullable: false)
+                    SectorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

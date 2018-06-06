@@ -217,7 +217,7 @@ namespace Trepapp.Data.Migrations
 
                     b.Property<int?>("SectorId");
 
-                    b.Property<int>("SectorÏd");
+                    b.Property<int>("SectorId");
 
                     b.HasKey("ViaId");
 

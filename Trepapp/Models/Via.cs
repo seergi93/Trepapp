@@ -12,7 +12,7 @@ namespace Trepapp.Models
         public string Descripcion { get; set; }
         public string Grado { get; set; }
         public Sector Sector { get; set; }
-        public int SectorÏd { get; set; }
+        public int SectorId { get; set; }
     }
 
 }

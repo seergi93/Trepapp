@@ -54,7 +54,7 @@ namespace Trepapp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ViaId,Nombre,Descripcion,Grado,SectorÏd")] Via via)
+        public async Task<IActionResult> Create([Bind("ViaId,Nombre,Descripcion,Grado,SectorId")] Via via)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Trepapp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ViaId,Nombre,Descripcion,Grado,SectorÏd")] Via via)
+        public async Task<IActionResult> Edit(int id, [Bind("ViaId,Nombre,Descripcion,Grado,SectorId")] Via via)
         {
             if (id != via.ViaId)
             {

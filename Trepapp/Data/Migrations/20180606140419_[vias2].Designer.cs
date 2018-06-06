@@ -11,8 +11,8 @@ using Trepapp.Data;
 namespace Trepapp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180606140205_[vias]")]
-    partial class vias
+    [Migration("20180606140419_[vias2]")]
+    partial class vias2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -215,8 +215,6 @@ namespace Trepapp.Data.Migrations
 
                     b.Property<string>("Nombre");
 
-                    b.Property<int?>("SectorId");
-
                     b.Property<int>("SectorId");
 
                     b.HasKey("ViaId");
@@ -275,7 +273,8 @@ namespace Trepapp.Data.Migrations
                 {
                     b.HasOne("Trepapp.Models.Sector", "Sector")
                         .WithMany("Vias")
-                        .HasForeignKey("SectorId");
+                        .HasForeignKey("SectorId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

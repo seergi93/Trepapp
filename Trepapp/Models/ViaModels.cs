@@ -98,7 +98,7 @@ namespace Trepapp.Models
 
         public List<object[]> filtrarVia(int numPagina, string valor, string order)
         {
-            int cant, numRegistros = 0, inicio = 0, reg_por_pagina = 10;
+            int cant, numRegistros = 0, inicio = 0, reg_por_pagina = 2;
             int can_paginas, pagina;
             string dataFilter = "", paginador = "";
             List<object[]> data = new List<object[]>();
@@ -149,12 +149,30 @@ namespace Trepapp.Models
                     "<td>" +
                     "<a data-toggle='modal' data-target='#modalCS' onclick='editarVia(" + item.ViaId + ',' + 1 + ")'  class='btn btn-success'>Edit</a>" +
                     "</td>" +
-                //   "<td>" +
-                //  getInstructorsCurso(item.CursoID)
-                //    "</td>" +
                 "</tr>";
 
             }
+
+            if (valor == "null")
+            {
+                if (numPagina > 1)
+                {
+                    pagina = numPagina - 1;
+                    paginador += "<a class='btn btn-default' onclick='filtrarVia(" + 1 + ',' + '"' + order + '"' + ")'> << </a>" +
+                    "<a class='btn btn-default' onclick='filtrarVia(" + pagina + ',' + '"' + order + '"' + ")'> < </a>";
+                }
+                if (1 < can_paginas)
+                {
+                    paginador += "<strong class='btn btn-success'>" + numPagina + ".de." + can_paginas + "</strong>";
+                }
+                if (numPagina < can_paginas)
+                {
+                    pagina = numPagina + 1;
+                    paginador += "<a class='btn btn-default' onclick='filtrarVia(" + pagina + ',' + '"' + order + '"' + ")'>  > </a>" +
+                                 "<a class='btn btn-default' onclick='filtrarVia(" + can_paginas + ',' + '"' + order + '"' + ")'> >> </a>";
+                }
+            }
+
             object[] dataObj = { dataFilter, paginador };
             data.Add(dataObj);
             return data;

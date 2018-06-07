@@ -31,6 +31,7 @@ class Vias {
                             if (id === response[i].sectorId) {
                                 document.getElementById('SectorVias').options[0] = new Option(response[i].nombre,
                                     response[i].sectorId);
+                                document.getElementById('SectorVias').selectedIndex = 0;
                                 break;
                             }
                         }
@@ -105,7 +106,7 @@ class Vias {
         document.getElementById("Nombre").value = "";
         document.getElementById("Descripcion").value = "";
         document.getElementById("Grado").value = "";
-        document.getElementById("SectorVias").selectedIned = 0;
+        document.getElementById("SectorVias").selectedIndex = 0;
         document.getElementById("mensaje").value = "";
         filtrarVia(1, "nombre");
         $('#ModalCS').modal('hide');

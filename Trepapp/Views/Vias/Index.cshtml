@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Trepapp.Models.Via>
-@{
+﻿@{
     ViewData["Title"] = "Vías";
 }
 <h2>Vías</h2>
@@ -10,7 +9,7 @@
 
 <div class="form-group">
     <div class="col-md-6">
-        <input id="filtrar" name="filtrar" placeholder="Buscar" onKeyUp="" class="form-control" />
+        <input id="filtrar" name="filtrar" placeholder="Buscar" onKeyUp="filtrarVia(1,'Nombre')" class="form-control" />
     </div>
 </div>
 
@@ -18,45 +17,27 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                <a href="#" onclick='filtrarVia(1,"nombre")'>Nombre</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
+                <a href="#" onclick='filtrarCurso(1,"des")'>Descripcion</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Grado)
+                <a href="#" onclick='filtrarCurso(1,"grado")'>Creditos</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SectorId)
+                <a href="#" onclick='filtrarCurso(1,"sector")'>Categoria</a>
             </th>
-            <th></th>
+            <th>
+                Opciones
+            </th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Grado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SectorId)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ViaId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ViaId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ViaId">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
+    <tbody id="resultSearch"></tbody>
 </table>
+
+<div id="paginado"></div>
+
 <div class="modal fade" id="modalCS" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

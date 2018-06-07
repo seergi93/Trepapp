@@ -24,6 +24,12 @@ namespace Trepapp.Models
 
         }
 
+        internal List<Sector> getSector(int id)
+        {
+            return context.Sector.Where(c => c.SectorId == id).ToList();
+
+        }
+
         internal List<IdentityError> agregarVia(int id, string nombre, string descripcion, string grado, int sector, string funcion)
         {
             var via = new Via
@@ -53,6 +59,70 @@ namespace Trepapp.Models
             });
             return errorList;
         }
+        public List<object[]> filtrarVia(int numPagina, string valor, string order)
+        {
+            int cant, numRegistros = 0, inicio = 0, reg_por_pagina = 10;
+            int can_paginas, pagina;
+            string dataFilter = "", paginador = "", Estado = null;
+            List<object[]> data = new List<object[]>();
+            IEnumerable<Via> query;
+            List<Via> sectores = null;
+
+            switch (order)
+            {
+                case "Nombre":
+                    sectores = context.Via.OrderBy(c => c.Nombre).ToList();
+                    break;
+                case "Grado":
+                    sectores = context.Via.OrderBy(c => c.Grado).ToList();
+                    break;
+                case "Sector":
+                    sectores = context.Via.OrderBy(c => c.Sector).ToList();
+                    break;
+                case "SectorId":
+                    sectores = context.Via.OrderBy(c => c.SectorId).ToList();
+                    break;
+
+                default:
+                    break;
+            }
+            numRegistros = sectores.Count;
+            inicio = (numPagina - 1) * reg_por_pagina;
+            can_paginas = (numRegistros / reg_por_pagina);
+            if (valor == "null")
+            {
+                query = sectores.Skip(inicio).Take(reg_por_pagina);
+            }
+            else
+            {
+                query = sectores.Where(c => c.Nombre.StartsWith(valor) ||
+                c.Grado.StartsWith(valor) || c.SectorId.ToString().Contains(valor));
+            }
+            cant = query.Count();
+
+            foreach (var item in query)
+            {
+                var sector = getSector(item.SectorId);
+
+                dataFilter += "<tr>" +
+                    "<td>" + item.Nombre + "</td>" +
+                    "<td>" + item.Descripcion + "</td>" +
+                    "<td>" + item.Grado + "</td>" +
+                    "<td>" + sector[0].Nombre + "</td>" +
+                    "<td>" +
+                    "<a data-toggle='modal' data-target='#modalCS' onclick='editarVia(" + item.SectorId + ',' + 1 + ")'  class='btn btn-success'>Edit</a>" +
+                    "</td>" +
+                //   "<td>" +
+                //  getInstructorsCurso(item.CursoID)
+                //    "</td>" +
+                "</tr>";
+
+            }
+            object[] dataObj = { dataFilter, paginador };
+            data.Add(dataObj);
+            return data;
+        }
+
     }
 }
 

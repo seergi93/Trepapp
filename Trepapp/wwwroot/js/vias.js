@@ -67,20 +67,20 @@
 
     }
 
-    //filtrarVias(numPagina, order) {
-    //    var valor = this.nombre;
-    //    var action = this.action;
-    //    if (valor == "") {
-    //        valor = "null";
-    //    }
-    //    $.ajax({
-    //        type: "POST",
-    //        url: action,
-    //        data: { valor, numPagina, order },
-    //        success: (response) => {
-    //            $("#resultSearch").html(response[0][0]);
-    //            $("#paginado").html(response[0][1]);
-    //        }
-    //    });
-    //}
+    filtrarVia(numPagina, order) {
+        var valor = this.nombre;
+        var action = this.action;
+        if (valor === "") {
+            valor = "null";
+        }
+        $.ajax({
+            type: "POST",
+            url: action,
+            data: { valor, numPagina, order },
+            success: (response) => {
+                $("#resultSearch").html(response[0][0]);
+                $("#paginado").html(response[0][1]);
+            }
+        });
+    }
 }

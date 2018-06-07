@@ -25,12 +25,12 @@ namespace Trepapp.Controllers
         // GET: Vias
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Via.ToListAsync());
+            return View();
         }
-        //public List<object[]> filtrarVia(int numPagina, string valor, string order)
-        //{
-        //    return viaModels.filtrarVia(numPagina, valor, order);
-        //}
+        public List<object[]> filtrarVia(int numPagina, string valor, string order)
+        {
+            return viaModels.filtrarVia(numPagina, valor, order);
+        }
 
         public List<Sector> getSectores()
         {
@@ -61,7 +61,7 @@ namespace Trepapp.Controllers
         {
             return View();
         }
-        
+
         public List<IdentityError> agregarVia(int id, string nombre, string descripcion, string grado, int sector, string funcion)
         {
             return viaModels.agregarVia(id, nombre, descripcion, grado, sector, funcion);

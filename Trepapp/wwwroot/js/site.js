@@ -191,6 +191,7 @@ $().ready(() => {
     document.getElementById("filtrar").focus();
     //filtrarDatos(1, "nombre");
     getSectores();
+    filtrarVia(1, "nombre");
 });
 
 var getSectores = () => {
@@ -207,5 +208,14 @@ var agregarVia = () => {
     var sector = sectores.options[sectores.selectedIndex].value;
     var vias = new Vias(nombre, descripcion, grado, sector, action);
     vias.agregarVia("", "");
+}
+
+filtrarVia = (numPagina, order) => {
+    var valor = document.getElementById('filtrar').value;
+    var action = "Vias/filtrarVia";
+    var vias = new Vias(valor, "", "", "", action);
+    vias.filtrarVia(numPagina, order);
+
+
 }
 

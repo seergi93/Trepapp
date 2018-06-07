@@ -3,6 +3,8 @@ $('#modalEditar').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
 });
 
+var idSector, funcion = 0, idVia;
+
 //Variables globales donde se almacenan datos de registro, aunque estos datos nunca los modificaremos
 var accessFailedCount;
 var concurrencyStamp;
@@ -188,18 +190,34 @@ $('#modalCS').on('shown.bs.modal', () => {
 
 
 $().ready(() => {
+    var URLactual = window.location;
     document.getElementById("filtrar").focus();
-    //filtrarDatos(1, "nombre");
-    getSectores();
-    filtrarVia(1, "nombre");
+    switch (URLactual.pathname) {
+        case "/Sectores":
+            //filtrarDatos(1, "nombre");
+            break;
+        case "/Vias":
+            getSectores(0, 0);
+            filtrarVia(1, "nombre");
+            break;
+        default:
+    }
+
 });
 
-var getSectores = () => {
+var getSectores = (id, fun) => {
     var action = 'Vias/getSectores';
     var vias = new Vias("", "", "", "", action);
-    vias.getSectores();
+    vias.getSectores(id, fun);
 }
 var agregarVia = () => {
+
+    if (funcion === 0) {
+        action = 'Vias/agregarVia';
+    } else {
+        action = 'Vias/editarVia';
+    }
+
     var action = 'Vias/agregarVia';
     var nombre = document.getElementById("Nombre").value;
     var descripcion = document.getElementById("Descripcion").value;
@@ -207,7 +225,8 @@ var agregarVia = () => {
     var sectores = document.getElementById("SectorVias");
     var sector = sectores.options[sectores.selectedIndex].value;
     var vias = new Vias(nombre, descripcion, grado, sector, action);
-    vias.agregarVia("", "");
+    vias.agregarVia(idVia, funcion);
+    funcion = 0;
 }
 
 filtrarVia = (numPagina, order) => {
@@ -217,5 +236,24 @@ filtrarVia = (numPagina, order) => {
     vias.filtrarVia(numPagina, order);
 
 
+}
+
+var editarVia = (id, fun) => {
+
+    funcion = fun;
+    idCurso = id;
+    var action = 'Vias/getVias';
+    var vias = new Vias("", "", "", "", action)
+    vias.getVias(id, fun);
+}
+var editarVia1 = () => {
+    var action = 'Vias/editarVia';
+    var vias = new Vias("", "", "", "", action)
+    vias.editarVias(idCurso, funcion);
+}
+
+var restablecer = () => {
+    var vias = new Vias("", "", "", "", "")
+    vias.restablecer();
 }
 

@@ -37,6 +37,17 @@ namespace Trepapp.Controllers
             return viaModels.getSectores();
         }
 
+        public List<Via> getVias(int id)
+        {
+
+            return viaModels.getVias(id);
+
+        }
+
+        public List<IdentityError> editarVia(int id, string nombre, string descripcion, string grado, int sectorId, int funcion)
+        {
+            return viaModels.editarVia(id, nombre, descripcion, grado, sectorId, funcion);
+        }
 
         // GET: Vias/Details/5
         public async Task<IActionResult> Details(int? id)

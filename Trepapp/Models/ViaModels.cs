@@ -13,6 +13,7 @@ namespace Trepapp.Models
         private List<IdentityError> errorList = new List<IdentityError>();
         private string code = "", des = "";
 
+
         public ViaModels(ApplicationDbContext context)
         {
             this.context = context;
@@ -59,27 +60,63 @@ namespace Trepapp.Models
             });
             return errorList;
         }
+
+        internal List<IdentityError> editarVia(int id, string nombre, string descripcion, string grado, int sectorId, int funcion)
+        {
+            var via = new Via()
+            {
+                ViaId = id,
+                Nombre = nombre,
+                Descripcion = descripcion,
+                Grado = grado,
+                SectorId = sectorId
+            };
+            try
+            {
+                context.Update(via);
+                context.SaveChanges();
+                code = "Save";
+                des = "Save";
+            }
+            catch (Exception e)
+            {
+                code = "error";
+                des = e.Message;
+            }
+            errorList.Add(new IdentityError
+            {
+                Code = code,
+                Description = des
+            });
+            return errorList;
+        }
+
+        internal List<Via> getVias(int id)
+        {
+            return context.Via.Where(c => c.ViaId == id).ToList();
+        }
+
         public List<object[]> filtrarVia(int numPagina, string valor, string order)
         {
             int cant, numRegistros = 0, inicio = 0, reg_por_pagina = 10;
             int can_paginas, pagina;
-            string dataFilter = "", paginador = "", Estado = null;
+            string dataFilter = "", paginador = "";
             List<object[]> data = new List<object[]>();
             IEnumerable<Via> query;
             List<Via> sectores = null;
 
-            switch (order)
+            switch (order.ToLower())
             {
-                case "Nombre":
+                case "nombre":
                     sectores = context.Via.OrderBy(c => c.Nombre).ToList();
                     break;
-                case "Grado":
+                case "grado":
                     sectores = context.Via.OrderBy(c => c.Grado).ToList();
                     break;
-                case "Sector":
+                case "sector":
                     sectores = context.Via.OrderBy(c => c.Sector).ToList();
                     break;
-                case "SectorId":
+                case "sectorId":
                     sectores = context.Via.OrderBy(c => c.SectorId).ToList();
                     break;
 
@@ -110,7 +147,7 @@ namespace Trepapp.Models
                     "<td>" + item.Grado + "</td>" +
                     "<td>" + sector[0].Nombre + "</td>" +
                     "<td>" +
-                    "<a data-toggle='modal' data-target='#modalCS' onclick='editarVia(" + item.SectorId + ',' + 1 + ")'  class='btn btn-success'>Edit</a>" +
+                    "<a data-toggle='modal' data-target='#modalCS' onclick='editarVia(" + item.ViaId + ',' + 1 + ")'  class='btn btn-success'>Edit</a>" +
                     "</td>" +
                 //   "<td>" +
                 //  getInstructorsCurso(item.CursoID)

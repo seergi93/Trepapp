@@ -43,10 +43,10 @@ namespace Trepapp.Controllers
             return viaModels.getVias(id);
 
         }
-
-        public List<IdentityError> editarVia(int id, string nombre, string descripcion, string grado, int sectorId, int funcion)
+        //id, nombre, descripcion, grado, sector, funcion 
+        public List<IdentityError> editarVia(int id, string nombre, string descripcion, string grado, int sector, int funcion)
         {
-            return viaModels.editarVia(id, nombre, descripcion, grado, sectorId, funcion);
+            return viaModels.editarVia(id, nombre, descripcion, grado, sector, funcion);
         }
 
         // GET: Vias/Details/5

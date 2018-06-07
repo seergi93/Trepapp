@@ -86,7 +86,7 @@ class Vias {
                         nombre: response[0].nombre,
                         descripcion: response[0].descripcion,
                         grado: response[0].grado,
-                        sectorId: response[0].sectorId
+                        sector: response[0].sectorId
                     });
                 } else {
                     document.getElementById("Nombre").value = response[0].nombre;
@@ -143,6 +143,8 @@ class Vias {
                 success: (response) => {
                     if (response[0].code === "Save") {
                         this.restablecer();
+                    } else {
+                        document.getElementById("titleVia").innerHTML = response[0].descripcion;
                     }
                 }
             });

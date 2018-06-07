@@ -61,7 +61,7 @@ namespace Trepapp.Models
             return errorList;
         }
 
-        internal List<IdentityError> editarVia(int id, string nombre, string descripcion, string grado, int sectorId, int funcion)
+        internal List<IdentityError> editarVia(int id, string nombre, string descripcion, string grado, int sector, int funcion)
         {
             var via = new Via()
             {
@@ -69,7 +69,7 @@ namespace Trepapp.Models
                 Nombre = nombre,
                 Descripcion = descripcion,
                 Grado = grado,
-                SectorId = sectorId
+                SectorId = sector
             };
             try
             {

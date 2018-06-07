@@ -191,12 +191,14 @@ $('#modalCS').on('shown.bs.modal', () => {
 
 $().ready(() => {
     var URLactual = window.location;
-    document.getElementById("filtrar").focus();
+   
     switch (URLactual.pathname) {
         case "/Sectores":
+            document.getElementById("filtrar").focus();
             //filtrarDatos(1, "nombre");
             break;
         case "/Vias":
+            document.getElementById("filtrar").focus();
             getSectores(0, 0);
             filtrarVia(1, "nombre");
             break;
@@ -218,7 +220,7 @@ var agregarVia = () => {
         action = 'Vias/editarVia';
     }
 
-    var action = 'Vias/agregarVia';
+    //var action = 'Vias/agregarVia';
     var nombre = document.getElementById("Nombre").value;
     var descripcion = document.getElementById("Descripcion").value;
     var grado = document.getElementById("Grado").value;
@@ -241,7 +243,7 @@ filtrarVia = (numPagina, order) => {
 var editarVia = (id, fun) => {
 
     funcion = fun;
-    idCurso = id;
+    idVia = id;
     var action = 'Vias/getVias';
     var vias = new Vias("", "", "", "", action)
     vias.getVias(id, fun);
@@ -249,7 +251,7 @@ var editarVia = (id, fun) => {
 var editarVia1 = () => {
     var action = 'Vias/editarVia';
     var vias = new Vias("", "", "", "", action)
-    vias.editarVias(idCurso, funcion);
+    vias.editarVias(idVia, funcion);
 }
 
 var restablecer = () => {

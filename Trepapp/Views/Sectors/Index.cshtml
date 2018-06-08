@@ -18,7 +18,7 @@
         <h2> @Html.DisplayFor(modelItem => item.Nombre)</h2>
         <div class="col-md-8">
 
-            <img class="img-fluid rounded mb-3 mb-md-0" src=" @Html.DisplayFor(modelItem => item.UrlImagen)" alt="Sa comuna de caimari">
+            <img onclick="getViasBySector(@item.SectorId)" class="img-fluid rounded mb-3 mb-md-0" src=" @Html.DisplayFor(modelItem => item.UrlImagen)" alt="Sa comuna de caimari">
 
         </div>
         <div class="col-md-8">
@@ -29,6 +29,8 @@
         <br />
 
     </div>
+    <tbody id="resultSearch"></tbody>
+
     <br />
     <div class="container">
         <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.SectorId">Editar</a>

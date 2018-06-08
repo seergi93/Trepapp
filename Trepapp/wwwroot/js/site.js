@@ -240,6 +240,14 @@ filtrarVia = (numPagina, order) => {
 
 }
 
+getViasBySector =  (sectorId) => {
+    var valor = sectorId;
+    var action = "Vias/getViasBySector";
+    var vias = new Vias("", "", "", "", action);
+    vias.getViasBySector(sectorId);
+    
+}
+
 var editarVia = (id, fun) => {
 
     funcion = fun;

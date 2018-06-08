@@ -96,6 +96,37 @@ namespace Trepapp.Models
             return context.Via.Where(c => c.ViaId == id).ToList();
         }
 
+
+        internal List<Via> getViasBySector(string valor, string order)
+        {
+          
+            List<Via> sectores = null;
+
+            switch (order.ToLower())
+            {
+                case "nombre":
+                    sectores = context.Via.OrderBy(c => c.Nombre).ToList();
+                    break;
+                case "grado":
+                    sectores = context.Via.OrderBy(c => c.Grado).ToList();
+                    break;
+                case "sector":
+                    sectores = context.Via.OrderBy(c => c.Sector).ToList();
+                    break;
+                case "sectorId":
+                    sectores = context.Via.OrderBy(c => c.SectorId).ToList();
+                    break;
+
+                default:
+                    break;
+            }
+
+            var via = sectores.Where(c => c.Nombre.StartsWith(valor) ||
+             c.Grado.StartsWith(valor) || c.SectorId.ToString().Contains(valor));
+            return via.ToList();
+
+        }
+
         public List<object[]> filtrarVia(int numPagina, string valor, string order)
         {
             int cant, numRegistros = 0, inicio = 0, reg_por_pagina = 2;

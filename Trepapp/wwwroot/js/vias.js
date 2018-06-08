@@ -112,6 +112,22 @@ class Vias {
         $('#ModalCS').modal('hide');
     }
 
+    getViasBySector(sectorId) {
+        var valor = this.nombre;
+        var action = this.action;
+        var order = "Sector";
+        if (valor === "") {
+            valor = "null";
+        }
+        $.ajax({
+            type: "POST",
+            url: action,
+            data: { sectorId, order },
+            success: (response) => {
+                $("#resultSearch").html(response[0][0]);
+            }
+        });
+    }
     filtrarVia(numPagina, order) {
         var valor = this.nombre;
         var action = this.action;

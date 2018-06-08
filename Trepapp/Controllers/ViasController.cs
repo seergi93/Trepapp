@@ -32,6 +32,11 @@ namespace Trepapp.Controllers
             return viaModels.filtrarVia(numPagina, valor, order);
         }
 
+        public List<Via> getViasBySector(string sectorId, string order)
+        {
+            return viaModels.getViasBySector(sectorId, order);
+        }
+
         public List<Sector> getSectores()
         {
             return viaModels.getSectores();

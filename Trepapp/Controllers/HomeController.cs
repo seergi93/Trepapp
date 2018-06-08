@@ -13,15 +13,15 @@ namespace Trepapp.Controllers
         }
 
 
-        //[Authorize(Roles = "Admin")]
-        //public IActionResult Users()
-        //{
-        //    ViewData["Message"] = "Página para administradores";
+        [Authorize(Roles = "Admin")]
+        public IActionResult Users()
+        {
+            ViewData["Message"] = "Página para administradores";
 
-        //    return View();
-        //}
+            return View();
+        }
 
-      
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

@@ -124,7 +124,15 @@ class Vias {
             url: action,
             data: { sectorId, order },
             success: (response) => {
-                $("#resultSearch").html(response[0][0]);
+                console.log(response);
+                $.each(response, function (index, val) {
+
+                    $('<h2>Via ' + (index) + ' :' + val.nombre
+                        + ' </h2> <h4>Grado: ' + val.nombre
+                        + '</h4> <h4>Descripcion: ' + val.nombre + '</h4>').appendTo("#printVia");
+
+
+                });
             }
         });
     }

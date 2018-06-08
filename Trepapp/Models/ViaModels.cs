@@ -129,7 +129,7 @@ namespace Trepapp.Models
 
         public List<object[]> filtrarVia(int numPagina, string valor, string order)
         {
-            int cant, numRegistros = 0, inicio = 0, reg_por_pagina = 2;
+            int cant, numRegistros = 0, inicio = 0, reg_por_pagina = 10;
             int can_paginas, pagina;
             string dataFilter = "", paginador = "";
             List<object[]> data = new List<object[]>();

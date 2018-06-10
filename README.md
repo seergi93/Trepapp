@@ -1,6 +1,8 @@
 # Trepapp
 Proyecto Final de Curso (Desarrollo de Aplicaciones Web , formación DUAL)
 
+![logo](https://github.com/seergi93/Trepapp/blob/master/imgss/LOGOTREPAPP.png "logo")
+
 ## Motivación
 
 En la actualidad, la mayoría de actividades de ocio, cuentan con diversas aplicaciones, tanto en la web o en nuestros smartphones.

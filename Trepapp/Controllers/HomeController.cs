@@ -20,6 +20,20 @@ namespace Trepapp.Controllers
 
             return View();
         }
+        
+        public IActionResult Sectors()
+        {
+            ViewData["Message"] = "";
+
+            return View();
+        }
+        
+        public IActionResult Vias()
+        {
+            ViewData["Message"] = "";
+
+            return View();
+        }
 
 
         public IActionResult About()

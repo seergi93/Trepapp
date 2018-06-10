@@ -35,6 +35,8 @@ El proyecto se va a realizar en c# con framework ASP.NET MVC  Core  y con una ba
 
 La maquetación se va a realizar con bootstrap.
 
+![](https://github.com/seergi93/Trepapp/blob/master/imgss/mvc.PNG "")
+
 
 
 

@@ -1,6 +1,12 @@
 # Trepapp
 Proyecto Final de Curso (Desarrollo de Aplicaciones Web , formación DUAL)
 
+Para acceder al código, [click aquí ](https://github.com/seergi93/Trepapp/tree/BetaVersion) para ir a la Beta
+
+
+
+
+
 ![logo](https://github.com/seergi93/Trepapp/blob/master/imgss/LOGOTREPAPP.png "logo")
 
 ## Motivación.

@@ -127,9 +127,10 @@ class Vias {
                 console.log(response);
                 $.each(response, function (index, val) {
 
-                    $('<h2>Via ' + (index) + ' :' + val.nombre
-                        + ' </h2> <h4>Grado: ' + val.nombre
-                        + '</h4> <h4>Descripcion: ' + val.nombre + '</h4>').appendTo("#printVia");
+                    $('<h2><strong>Via ' + (index + 1) + ' : </strong>' + val.nombre
+                        + ' </h2> <h3><strong>Grado: </strong>  ' + val.grado
+                        + '</h3> <h4><strong>Descripcion: </strong> ' + val.descripcion + '</h4>').appendTo("#printVia");
+                    index++;
 
 
                 });

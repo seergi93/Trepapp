@@ -2,6 +2,7 @@
     ViewData["Title"] = "Home";
 }
 <style>
+
     body {
         padding-top: 100px;
         padding-bottom: 40px;
@@ -48,14 +49,22 @@
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
+
+    .logo {
+        width: 50%;
+    }
 </style>
+
 <div class="container">
+   
 
     <div class="form-signin ">
+        <img class="img-responsive" src="~/images/logo.png" />
+        <br />
         <div>
-            <a class="btn btn-lg btn-primary btn-block" href="/Account/Login">Loggear-me</a>
-            <a class="btn btn-lg btn-success btn-block" data-toggle="modal" data-target="#modalAgregar"> Registrar-me</a>
-            <a class="btn btn-lg btn-info btn-block" href="/Sectors">Entrar sin usuario</a>
+            <a class="btn btn-lg btn-primary btn-block" href="/Account/Login">Iniciar sesión</a><br />
+            <a class="btn btn-lg btn-success btn-block" data-toggle="modal" data-target="#modalAgregar"> Registrar-me</a><br />
+            <a class="btn btn-lg btn-info btn-block" href="/Sectors">Ir a Sectores</a>
         </div>
 
     </div>

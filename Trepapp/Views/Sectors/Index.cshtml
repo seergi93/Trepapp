@@ -7,44 +7,47 @@
     Sectores de escalada
 </h1>
 
-<p>
-    <a class="btn btn-info" asp-action="Create">Crear un nuevo sector</a>
-</p>
 
 
 @foreach (var item in Model)
 {<br />
     <!-- Sector -->
- <div class="container">
-     <div class="row">
-         <div class="col-lg-9 col-md-6">
-             <div class="thumbnail">
-                 <img src="@Html.DisplayFor(modelItem => item.UrlImagen)" alt="">
-                 <div class="caption">
-                     <h2>@Html.DisplayFor(modelItem => item.Nombre)</h2>
-                     <h3>@Html.DisplayFor(modelItem => item.Lugar)</h3>
-                     <br />
-                     <p>  @Html.DisplayFor(modelItem => item.Descripcion)</p>
-                     <br />
-                     <a class="btn btn-primary" href="@Html.DisplayFor(modelItem => item.UrlLocalizacion)">Ver ubicación</a>
-                     <button onclick="getViasBySector(@item.SectorId)" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Ver vías</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-6">
+                <div class="thumbnail">
+                    <img src="@Html.DisplayFor(modelItem => item.UrlImagen)" alt="">
+                    <div class="caption">
+                        <h2>@Html.DisplayFor(modelItem => item.Nombre)</h2>
+                        <h3>@Html.DisplayFor(modelItem => item.Lugar)</h3>
+                        <br />
+                        <p>  @Html.DisplayFor(modelItem => item.Descripcion)</p>
+                        <br />
+                        <a class="btn btn-primary" href="@Html.DisplayFor(modelItem => item.UrlLocalizacion)">Ver ubicación</a>
+                        <button onclick="getViasBySector(@item.SectorId)" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Ver vías</button>
 
 
-                 </div>
-             </div>
-         </div>
-     </div>
-     <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.SectorId">Editar</a>
-     <a class="btn btn-info" asp-action="Details" asp-route-id="@item.SectorId">Detalles</a>
-     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.SectorId">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.SectorId">Editar</a>
+        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.SectorId">Detalles</a>
+        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.SectorId">Eliminar</a>
 
- </div>
- 
+    </div>
+
     <br />
     <br />
+
 }
 
 
+<br />
+<br />
+<p>
+    <a class="btn btn-info" asp-action="Create">Crear un nuevo sector</a>
+</p>
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div id="printVia" class="modal-content container">

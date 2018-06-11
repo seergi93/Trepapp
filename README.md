@@ -1,9 +1,9 @@
 # Trepapp
 Proyecto Final de Curso (Desarrollo de Aplicaciones Web , formación DUAL)
 
-Para acceder al código, [click aquí ](https://github.com/seergi93/Trepapp/tree/BetaVersion) para ir a la Beta
+## Para acceder al código, [click aquí ](https://github.com/seergi93/Trepapp/tree/BetaVersion) para ir a la Beta
 
-
+## [Aquí la documentación en doc](https://drive.google.com/open?id=1_BZaD25pa-JCVoqYF9QxDR_pBboXQcvQAc5gdVmqjpE)
 
 
 
@@ -83,7 +83,3 @@ Lo más dificil de este proyecto ha sido aprender a usar ASP.NET CORE.
 Si tendría que hacerlo de nuevo, haría un proyecto API Rest (en el proyecto he hecho funcionalidades de este tipo y, me ha resultado más práctico de entender y hacer).
 
 
-
-
-
-[Aquí la documentación en doc](https://drive.google.com/open?id=1_BZaD25pa-JCVoqYF9QxDR_pBboXQcvQAc5gdVmqjpE)
